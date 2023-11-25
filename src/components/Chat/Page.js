@@ -2,7 +2,6 @@ import SendIcon from '@mui/icons-material/Send';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { pink } from '@mui/material/colors';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
@@ -16,7 +15,6 @@ const ChatPage=({socket})=>{
     const myBg=useSelector((state)=>state.user.bg)
     const msgList=useSelector((state)=>state.messages.msg);
     const sendMessage=async()=>{
-        console.log("msg-->",text)
         const randomDecimal = Math.random();
         const randomNumber = Math.floor(randomDecimal * 1e15);
         let msg={
@@ -64,7 +62,7 @@ const ChatPage=({socket})=>{
         dispatch(deleteMsg({data:data}))
     })
     useEffect(()=>{
-        console.log("msg-->",msgList)
+        console.log("updated msg array-->",msgList)
     },[msgList])
     return (
         <div className="grid grid-cols-7 ">

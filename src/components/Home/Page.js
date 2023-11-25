@@ -1,10 +1,6 @@
-
 //import compoents
 import ProfileComponent from "./Profile";
 import UsersComponent from "./Users";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-//conect to the socket backend
 
 const HomePage=({socket})=>{
     return(

@@ -5,7 +5,9 @@ import { io } from "socket.io-client";
 //importing components
 import HomePage from './components/Home/Page';
 import ChatPage from './components/Chat/Page';
+//socket connection here....
 const socket=io.connect('http://localhost:9000/')
+
 function App() {
   return (
     <Router>

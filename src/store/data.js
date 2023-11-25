@@ -4,8 +4,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const userData=createSlice({
     name:'user',
     initialState:{
-        id:'abc_2',
-        name:'User-one',
+        id:'',
+        name:'Default-Username',
         bg:'bg-blue-500'
     },
     reducers:{
@@ -13,11 +13,9 @@ const userData=createSlice({
             return { ...state, id: action.payload.id };
           },
           updateName: (state, action) => {
-            console.log("UPDATING NAME TO ", action.payload);
             return { ...state, name: action.payload.name };
           },
           updateUserProfileBackground: (state, action) => {
-            console.log("UPDATING COLOR OF BACKGROUND TO ", action.payload);
             return { ...state, bg: action.payload.bg };
           },
     }

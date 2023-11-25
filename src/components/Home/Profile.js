@@ -4,21 +4,23 @@ import { useDispatch,useSelector } from "react-redux";
 import { updateId, updateName ,updateUserProfileBackground} from "../../store/data";
 const color=[
     'bg-blue-500',
+    'bg-[#b54410]',
     'bg-red-500',
+    'bg-[#0da8a6]',
     'bg-green-500',
+    'bg-[#c2105a]',
     'bg-black',
     'bg-[#94238e]',
     'bg-[#5314a6]',
-    'bg-[#b54410]',
     'bg-[#d4ac0d]',
-    'bg-[#0da8a6]',
-    'bg-[#c2105a]',
     'bg-[#10c257]'
 ]
 const ProfileComponent=({socket})=>{
     const dispatch=useDispatch();
+    //getting the user's data from user redux store
     const name=useSelector((state)=>state.user.name)
     const bg=useSelector((state)=>state.user.bg)
+    
     const [currentBg,setCurrentBg]=useState(0)
     const [nickName,setNickName]=useState("");
     //update name of the user
