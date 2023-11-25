@@ -1,11 +1,12 @@
 import SendIcon from '@mui/icons-material/Send';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { pink } from '@mui/material/colors';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
-import { updateLikeForMessage, updateMsg } from '../../store/messages';
+import {  deleteMsg, updateMsg } from '../../store/messages';
 
 const ChatPage=({socket})=>{
     const {id}=useParams()
@@ -38,9 +39,12 @@ const ChatPage=({socket})=>{
     }
     const updateLike=(index,single)=>{
          single={...single,liked:!single.liked}
-         console.log("after liking-->",single);
          dispatch(updateMsg({data:single}))
          socket.emit('liked_message',single);
+    }
+    const deleteMessage=(single)=>{
+          dispatch(deleteMsg({data:single}))
+          socket.emit('delete_message',single);
     }
     socket.off('receive_message').on('receive_message',(data)=>{
         console.log("received msg-->",data)
@@ -55,6 +59,10 @@ const ChatPage=({socket})=>{
         }
         dispatch(updateMsg({data:msg}))
     })
+    socket.off('receive_deleted_message').on('receive_deleted_message',(data)=>{
+        console.log("deleted msg-->",data)
+        dispatch(deleteMsg({data:data}))
+    })
     useEffect(()=>{
         console.log("msg-->",msgList)
     },[msgList])
@@ -67,6 +75,12 @@ const ChatPage=({socket})=>{
                     {
                       msgList.map((single,index)=>single.id==id&&
                       <div className={`col-span-1 ${single.owner==myName?'text-right':'text-left'} py-1`}>
+                           {
+                            single.owner==myName&&
+                            <span className='text-[#6f6b6b]'>
+                                   <DeleteIcon fontSize='small' className='cursor-pointer' onClick={()=>deleteMessage(single)}/>
+                            </span>
+                           }
                           {
                             single.owner!=myName&&
                             <span className={`${single.bg} mr-1 rounded-circle px-2 py-1 text-white`}>{single.owner.substring(0,2).toUpperCase()}</span>
