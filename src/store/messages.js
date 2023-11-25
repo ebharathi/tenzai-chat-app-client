@@ -7,7 +7,23 @@ const messages=createSlice({
     },
     reducers:{
         updateMsg:(state,action)=>{
-              state.msg.push(action.payload.data)
+              const { data } = action.payload;
+              let tempArr=[];
+              let isFound=false;
+              state.msg.map((single)=>{
+                 if(single.msgId==data.msgId)
+                 {
+                    isFound=true;
+                    console.log("FOUND--->",data)
+                    tempArr.push(data)
+                 }
+                 else
+                   tempArr.push(single)
+              })
+              if(isFound==false)
+                tempArr.push(data)
+              console.log("temp arr---->",tempArr)
+              state.msg=tempArr
         }
     }
 })

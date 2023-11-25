@@ -11,7 +11,7 @@ const UsersComponent=({socket})=>{
          console.log("USERS LIST ARRAY---->",data) 
          dispatch(updateList({myId:socket.id,data:data}))
     })
-    const joinChatRoom=async(id)=>{
+    const joinChatRoom=async(id,name)=>{
         let room_id='';
         if(id[0]<socket.id[0])
            room_id=id+socket.id
@@ -25,19 +25,6 @@ const UsersComponent=({socket})=>{
             {
                 list.map((item)=>
                 <div className="col-span-1 my-2 py-1 px-10 grid grid-cols-2">
-                     {/* <div className="col-span-2">
-                     </div>   
-                     <div className={`col-span-1 ${item.bg}  rounded-circle w-12 h-12 text-[20px] text-white flex justify-center items-center`}>
-                        {item.username.substring(0,2).toUpperCase()}
-                     </div>
-                     <div className="col-span-2 flex items-center text-[20px]">
-                       <span>{item.username}</span>
-                     </div>
-                     <div className="col-span-1">
-                         <a className="bg-green-500 px-3 py-1 rounded-md">CHAT</a>
-                     </div>
-                     <div className="col-span-2">
-                     </div> */}
                      <div className="col-span-1">
                         <div className={` ${item.bg}  rounded-circle w-20 h-20 text-[20px] text-white flex justify-center items-center`}>
                             {item.username.substring(0,2).toUpperCase()}
