@@ -44,7 +44,7 @@ const ProfileComponent=({socket})=>{
         if(name!=""&&name.length>=1)
         {
             setNickName(name.substring(0,2).toUpperCase())
-            dispatch(updateId({id:socket}))
+            dispatch(updateId({id:socket.id}))
             socket.emit('setNewUser',{id:socket.id,username:name,bg:bg})
         }
     },[name])

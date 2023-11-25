@@ -7,10 +7,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import User from './store/data'
 import UserList from './store/userslist'
+import Messages from './store/messages'
 const store=configureStore({
   reducer:{
     user:User,
-    userList:UserList
+    userList:UserList,
+    messages:Messages
   }
 })
 const root = ReactDOM.createRoot(document.getElementById('root'));

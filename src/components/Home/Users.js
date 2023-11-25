@@ -1,16 +1,25 @@
 import { useDispatch,useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { updateList } from "../../store/userslist"
 const UsersComponent=({socket})=>{
+    const Navigate=useNavigate();
     const dispatch=useDispatch()
     const list=useSelector((state)=>state.userList.list)
     const [isempty,setIsempty]=useState(false);
     socket.on('userConnected',(data)=>{
          console.log("USERS LIST ARRAY---->",data) 
          dispatch(updateList({myId:socket.id,data:data}))
-
     })
-    
+    const joinChatRoom=async(id)=>{
+        let room_id='';
+        if(id[0]<socket.id[0])
+           room_id=id+socket.id
+        else
+           room_id=socket.id+id
+        socket.emit("join_room",room_id);
+        Navigate(`/chat/${room_id}`);
+    }
     return (
         <div className="px-5 grid grid-cols-2">
             {
@@ -37,7 +46,9 @@ const UsersComponent=({socket})=>{
                      </div>   
                      <div className="flex flex-col">
                            <div className="text-center mt-10">
-                           <button className="bg-blue-500 w-24 rounded-md py-2 font-semibold">CHAT</button>
+                           <button onClick={()=>joinChatRoom(item?.id,item.username)} className="bg-blue-500 w-24 rounded-md py-2 font-semibold">
+                                    CHAT
+                            </button>
                            </div>
                      </div>   
                 </div>    

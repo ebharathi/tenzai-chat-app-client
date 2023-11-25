@@ -11,7 +11,7 @@ function App() {
     <Router>
       <Routes>
           <Route path='/' element={<HomePage socket={socket}/>}/>
-          <Route path='/chat' element={<ChatPage/>}/>
+          <Route path='/chat/:id' element={<ChatPage socket={socket}/>}/>
       </Routes>
     </Router>
   );
