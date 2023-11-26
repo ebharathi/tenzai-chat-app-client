@@ -23,6 +23,12 @@ const UsersComponent=({socket})=>{
     return (
         <div className="px-5 grid grid-cols-5 space-x-1 space-y-1">
             {
+                list.length==0&&
+                <div className='mt-20 text-center col-span-5 text-[50px]'>
+                    NO USERS FOUND !
+                </div>    
+            }
+            {
                 list.map((item)=>
                 <div className={`${item.bg} rounded-xl h-40  col-span-1 my-2 py-1 px-10 grid grid-cols-3 relative`}>
                      <div className="col-span-1 flex items-center">

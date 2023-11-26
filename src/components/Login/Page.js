@@ -57,21 +57,24 @@ const LoginPage=({socket})=>{
     }
     return (
         <div className="bg-[#aeaeae] h-full flex justify-center items-center relative">
-              <div className="py-20 px-16    bg-[#FFFFFF] rounded-lg">
+              <div className="py-20 px-16    bg-[#FFFFFF] rounded-lg relative">
                         <form>
                               <div className="flex justify-center mb-3">
                                    <div onClick={()=>changeProfileColour(currentColor)} className={`${profileColor} cursor-pointer rounded-circle w-40 h-40 flex items-center justify-center text-white text-[40px]`}>
                                           {username!=""&&username.length>1&&username.substring(0,2).toUpperCase()}
                                    </div>
                               </div>
-                              <input onChange={(e)=>dispatch(updateName({name:e.target.value}))} value={username} type="text" placeholder="username" className="outline-none px-5 py-2 border-1 border-[#aeaeae] rounded-lg"/>
+                              <input onChange={(e)=>dispatch(updateName({name:e.target.value}))} value={username} type="text" placeholder="username" className="outline-none px-5 py-2 my-3 border-1 border-[#aeaeae] rounded-lg"/>
                               <div className="text-[11px] text-red-500 my-3 text-center">
                                 {error}
                               </div>
                               <div className="text-center my-2">
-                                 <button onClick={(e)=>handleSubmit(e)} className={`${profileColor} text-white hover:text-[#696969] hover:bg-white hover:border-1 hover:border-[#696969]  px-5 py-2 rounded-md`}>GOOOOO!</button>
+                                 <button onClick={(e)=>handleSubmit(e)} className={`${profileColor} text-white hover:text-[#696969] hover:bg-white hover:border-1 hover:border-[#696969]  px-5 py-2 rounded-md`}>LET'S CHAT !</button>
                               </div>
                         </form>
+                        <div className="absolute bottom-2 ">
+                            <span className="text-[10px]">*Change your profile colour by clicking the circle above</span>
+                        </div>
               </div>
         </div>    
     )
