@@ -21,7 +21,7 @@ const UsersComponent=({socket})=>{
         Navigate(`/chat/${room_id}`);
     }
     return (
-        <div className="px-5 grid grid-cols-5 space-x-1 space-y-1">
+        <div className="px-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 space-x-1 space-y-1">
             {
                 list.length==0&&
                 <div className='mt-20 text-center col-span-5 text-[50px]'>
