@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      height:{
+        'custom-vh':'60vh'
+      },
       borderWidth:{
         '1':'1px'
       },

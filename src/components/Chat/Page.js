@@ -14,6 +14,13 @@ const ChatPage=({socket})=>{
     const myName=useSelector((state)=>state.user.name)
     const myBg=useSelector((state)=>state.user.bg)
     const msgList=useSelector((state)=>state.messages.msg);
+    const handleKeyPresses=(event)=>{
+         if(event.key=="Enter"&&text!="")
+         {
+            console.log("[+]Enter key pressed....")
+            sendMessage();
+         }
+    }
     const sendMessage=async()=>{
         const randomDecimal = Math.random();
         const randomNumber = Math.floor(randomDecimal * 1e15);
@@ -65,11 +72,11 @@ const ChatPage=({socket})=>{
         console.log("updated msg array-->",msgList)
     },[msgList])
     return (
-        <div className="grid grid-cols-7 ">
-        <div className="col-span-2"></div>
-        <div className="col-span-3 p-10">
-            <div className="relative chat-component flex flex-col px-3 py-2 rounded-xl">
-                <div className='overflow-y-scroll h-full'>
+        <div className="grid grid-cols-7 bg-[#aeaeae] h-full ">
+        <div className="col-span-0 lg:col-span-2"></div>
+        <div className="col-span-7 lg:col-span-3 p-10">
+            <div className="relative custom-vh flex flex-col rounded-xl">
+                <div className='overflow-y-scroll h-full bg-white rounded-xl p-5'>
                     {
                       msgList.map((single,index)=>single.id==id&&
                       <div className={`col-span-1 ${single.owner==myName?'text-right':'text-left'} py-1`}>
@@ -120,15 +127,15 @@ const ChatPage=({socket})=>{
                       )      
                     }
                 </div>
-                 <div className='absolute bottom-2 left-1 right-2 rounded-lg  border-1 border-[#9a9b9c] w-full  bg-white flex'>
-                    <input value={text} onChange={(e)=>setText(e.target.value)} type="text" placeholder="Enter message here..." className="w-full outline-none px-3 py-5"/>
+                 <div className='absolute bottom-4 right-1  w-[97%] rounded-lg  border-1 border-[#9a9b9c]  bg-white flex'>
+                    <input onKeyDown={(e)=>handleKeyPresses(e)} value={text} onChange={(e)=>setText(e.target.value)} type="text" placeholder="Enter message here..." className="w-full outline-none px-3 py-5"/>
                     <div className='flex justify-center items-center mr-3'>
-                      <SendIcon className='' fontSize='large' color='primary' onClick={sendMessage} />
+                      <SendIcon className='cursor-pointer' fontSize='large' color='primary' onClick={sendMessage} />
                     </div>
                  </div>
             </div>
         </div>
-        <div className="col-span-2"></div>
+        <div className="lg:col-span-2"></div>
    </div>
     )
 }
