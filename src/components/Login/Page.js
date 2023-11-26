@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateId, updateName, updateUserProfileBackground } from "../../store/data";
 import { useNavigate } from "react-router-dom";
+
 const color=[
     'bg-[#696969]',
     'bg-blue-500',
@@ -55,7 +56,7 @@ const LoginPage=({socket})=>{
         Navigate('/home')
     }
     return (
-        <div className="bg-[#aeaeae] h-full flex justify-center items-center">
+        <div className="bg-[#aeaeae] h-full flex justify-center items-center relative">
               <div className="py-20 px-16    bg-[#FFFFFF] rounded-lg">
                         <form>
                               <div className="flex justify-center mb-3">

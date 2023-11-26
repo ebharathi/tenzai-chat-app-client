@@ -4,15 +4,15 @@ import UsersComponent from "./Users";
 
 const HomePage=({socket})=>{
     return(
-        <div className="grid grid-cols-7 border-2 border-green-400   landing-page ">
-             <div className="col-span-2"></div>
-             <div className="col-span-3 p-10">
-                 <div className="flex flex-col px-3 py-2 rounded-xl  backdrop-filter backdrop-blur-sm">
+        <div className=" relative">
+             <div className="absolute top-0 right-0">
                        <ProfileComponent socket={socket}/>
+             </div>
+             <div className="">
+                 <div className="pt-20 px-3 py-2 rounded-xl">
                        <UsersComponent socket={socket}/>
                  </div>
              </div>
-             <div className="col-span-2"></div>
         </div>
     )
 }
