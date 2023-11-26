@@ -5,8 +5,8 @@ const userData=createSlice({
     name:'user',
     initialState:{
         id:'',
-        name:'Default-Username',
-        bg:'bg-blue-500'
+        name:'',
+        bg:'bg-[#696969]'
     },
     reducers:{
         updateId: (state, action) => {
